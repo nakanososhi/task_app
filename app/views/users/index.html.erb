@@ -1,0 +1,45 @@
+<h1>スケジュール一覧</h1>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+  <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>スケジュール更新日時</th>
+      <th>スケジュール作成日</th>
+      <th>確認</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.title %></td>
+        <td><%= user.start %></td>
+        <td><%= user.stop %></td>
+        <td><% if user.allday == true %>
+              ○
+            <% else user.allday == false %>
+            <% end %>
+        </td>
+        <td><%= user.updated_at.to_s(:datetime_jp) %></td>
+        <td><%= user.created_at.to_s(:datetime_jp) %></td>
+        <td><%= link_to "確認", user %></td>
+        <td><%= link_to "編集", [:edit, user] %></td>
+        <td><%= button_to "削除", user, { method: :delete, form: { data: { turbo_confirm: "本当に削除しますか？" } } } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to "スケジュール新規登録", :new_user %></p>

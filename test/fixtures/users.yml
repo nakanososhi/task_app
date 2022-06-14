@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  start: 2022-06-09
+  stop: 2022-06-09
+  allday: false
+
+two:
+  title: MyString
+  start: 2022-06-09
+  stop: 2022-06-09
+  allday: false
